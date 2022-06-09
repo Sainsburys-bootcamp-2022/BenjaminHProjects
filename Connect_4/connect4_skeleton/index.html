@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+<head>
+    <title>Connect 4</title>
+    <link href="fanciness.css"
+        rel="stylesheet">
+
+     <script>
+          function allowDrop(ev) {
+               ev.preventDefault()
+          }
+          
+
+          function drag(ev) {
+               console.log(ev.target.id)
+               console.log(ev)
+               ev.dataTransfer.setData("text", ev.target.id)
+          }
+
+          function drop(ev) {
+               const squares = document.getElementsByClassName("column")
+               console.log("Squares: " + squares[0])
+               ev.preventDefault()
+               let data = ev.dataTransfer.getData("text")
+               console.log(ev)
+               const counter = document.getElementById(data)
+               const counterCopy = counter.cloneNode()
+               counterCopy.setAttribute("draggable", false)
+          }
+     </script>
+     
+</head>
+
+<body>
+    <h1>Connect 4</h1>
+    <p id="winner-display">The winner is <span id="winner-name"></span></p>
+    <div class="inputs">
+     <form method="post" id="init-players">
+          <div class="player1">
+            <label for="player1Name">Player 1: </label>
+            <input type="text" id="player1Name" name="player1">
+            <input type="color" id="player1color" name="player1"><br><br>
+            <div class="player1-counter" id="player1-counter" ondragstart="drag(event)" width="100" height="100"></div>
+          </div>
+          <div class="player2">
+            <label for="player2Name">Player 2: </label>
+            <input type="text" id="player2Name" name="player2">
+            <input type="color" id="player1color" name="player1"><br><br>
+            <div class="player2-counter" id="player2-counter" ondragstart="drag(event)" width="100" height="100"></div>
+          </div>
+
+          <input type="submit" value="Start Game" id="startButton">
+     </form>
+    </div>
+
+    <p id="winner-display">The winner is <span id="winner-name"></span></p>
+
+    <div id="grid">
+        <div class="row"
+             id="row-0">
+          <div class="column"
+               id="row-0-column-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-0-column-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-0-column-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-0-column-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-0-column-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-0-column-5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-0-column-6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </div>
+        <div class="row"
+             id="row-1">
+          <div class="column"
+               id="row-1-column-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-1-column-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-1-column-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-1-column-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-1-column-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-1-column-5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-1-column-6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </div>
+        <div class="row"
+             id="row-2">
+          <div class="column"
+               id="row-2-column-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-2-column-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-2-column-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-2-column-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-2-column-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-2-column-5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-2-column-6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </div>
+        <div class="row"
+             id="row-3">
+          <div class="column"
+               id="row-3-column-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-3-column-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-3-column-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-3-column-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-3-column-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-3-column-5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-3-column-6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </div>
+        <div class="row"
+             id="row-4">
+          <div class="column"
+               id="row-4-column-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-4-column-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-4-column-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-4-column-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-4-column-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-4-column-5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-4-column-6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </div>
+        <div class="row"
+             id="row-5">
+          <div class="column"
+               id="row-5-column-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-5-column-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-5-column-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-5-column-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-5-column-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-5-column-5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          <div class="column"
+               id="row-5-column-6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </div>
+    </div>
+    <button id="reset-button">Reset Game</button>
+
+    <script src="main.js"
+        type="text/javascript"></script>
+</body>
+</html>
