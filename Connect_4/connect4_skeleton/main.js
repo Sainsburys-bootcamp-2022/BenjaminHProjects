@@ -14,7 +14,7 @@ function getBoard() {
     console.log("getBoard was called")
     return boardLayout
 }
-
+// hi
 
 function getNewBoard() {
         return [[null, null, null, null, null, null, null], 
