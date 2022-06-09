@@ -1,9 +1,9 @@
-let boardLayout = [[null, null, null, null, null, null, null], 
-                   [null, null, null, null, null, null, null],
-                   [null, null, null, null, null, null, null],
-                   [null, null, null, null, null, null, null],
-                   [null, null, null, null, null, null, null],
-                   [null, null, null, null, null, null, null]];
+let boardLayout = [[null, null, null, null, null, null, null],
+[null, null, null, null, null, null, null],
+[null, null, null, null, null, null, null],
+[null, null, null, null, null, null, null],
+[null, null, null, null, null, null, null],
+[null, null, null, null, null, null, null]];
 let player1Turn = true
 let gameOver = false
 const player1 = document.getElementById("player1-counter")
@@ -16,12 +16,12 @@ function getBoard() {
 }
 
 function getNewBoard() {
-        return [[null, null, null, null, null, null, null], 
-                [null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null],
-                [null, null, null, null, null, null, null]]
+    return [[null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null]]
 }
 
 
@@ -57,22 +57,21 @@ function takeTurn(row, column) {
     console.log("takeTurn was called with row: " + row + ", column:" + column);
     console.log(`takeTurn was called with row: ${row}, column: ${column}`);
     let currentSquare = boardLayout[row][column]
-        if (player1Turn && currentSquare === null) {
-            const yellowCounter = "player1"
-            fallCheck(yellowCounter, row, column)
-            player2.setAttribute("draggable", true)
-            player1.setAttribute("draggable", false)
-            player1Turn = false
-        } else if (currentSquare === null) {
-            const redCounter = "player2"
-            fallCheck(redCounter, row, column)
-            // boardLayout[row][column] = "player2"
-            player2.setAttribute("draggable", false)
-            player1.setAttribute("draggable", true)
-            player1Turn = true
-        } else {
-            console.log("Try another square!")
-        }
+    if (player1Turn && currentSquare === null) {
+        const yellowCounter = "player1"
+        fallCheck(yellowCounter, row, column)
+        player2.setAttribute("draggable", true)
+        player1.setAttribute("draggable", false)
+        player1Turn = false
+    } else if (currentSquare === null) {
+        const redCounter = "player2"
+        fallCheck(redCounter, row, column)
+        player2.setAttribute("draggable", false)
+        player1.setAttribute("draggable", true)
+        player1Turn = true
+    } else {
+        console.log("Try another square!")
+    }
     console.table(boardLayout)
 }
 
@@ -171,40 +170,40 @@ function checkHorizontal() {
 
 function checkVertical() {
     console.log("checkVertical was called")
-    for (column = 0; column<3 ; column++ ){
-        for (row = 0; row<6; row++){
-            if (boardLayout[column][row] === "player1" && boardLayout[column+1][row] === "player1" && boardLayout[column+2][row] === "player1" && boardLayout[column+3][row] === "player1"){
+    for (column = 0; column < 3; column++) {
+        for (row = 0; row < 6; row++) {
+            if (boardLayout[column][row] === "player1" && boardLayout[column + 1][row] === "player1" && boardLayout[column + 2][row] === "player1" && boardLayout[column + 3][row] === "player1") {
                 console.log("Player1 wins")
                 gameOver = true
                 return "player1";
-            } else if (boardLayout[column][row] === "player2" && boardLayout[column+1][row] === "player2" && boardLayout[column+2][row] === "player2" && boardLayout[column+3][row] === "player2") {
-                    gameOver = true
-                    return "player2";
-            }         
+            } else if (boardLayout[column][row] === "player2" && boardLayout[column + 1][row] === "player2" && boardLayout[column + 2][row] === "player2" && boardLayout[column + 3][row] === "player2") {
+                gameOver = true
+                return "player2";
+            }
         }
     }
 }
 
 function checkDiagonal() {
     console.log("checkDiagonal was called")
-    for (columnAsc=3; columnAsc<7; columnAsc++){
-        for (rowAsc=0; rowAsc<6; rowAsc++){
-            if (boardLayout[rowAsc][columnAsc] === "player1" && boardLayout[rowAsc-1][columnAsc+1] === "player1" && boardLayout[rowAsc-2][columnAsc+2] === "player1" && boardLayout[rowAsc-3][columnAsc+3] === "player1") {
+    for (columnAsc = 3; columnAsc < 7; columnAsc++) {
+        for (rowAsc = 0; rowAsc < 6; rowAsc++) {
+            if (boardLayout[rowAsc][columnAsc] === "player1" && boardLayout[rowAsc - 1][columnAsc + 1] === "player1" && boardLayout[rowAsc - 2][columnAsc + 2] === "player1" && boardLayout[rowAsc - 3][columnAsc + 3] === "player1") {
                 gameOver = true
                 return "player1";
-            } else if (boardLayout[rowAsc][columnAsc] === "player2" && boardLayout[rowAsc-1][columnAsc+1] === "player2" && boardLayout[rowAsc-2][columnAsc+2] === "player2" && boardLayout[rowAsc-3][columnAsc+3] === "player2") {
+            } else if (boardLayout[rowAsc][columnAsc] === "player2" && boardLayout[rowAsc - 1][columnAsc + 1] === "player2" && boardLayout[rowAsc - 2][columnAsc + 2] === "player2" && boardLayout[rowAsc - 3][columnAsc + 3] === "player2") {
                 gameOver = true
                 return "player2";
             }
         }
     }
-    for (i=3; i<7; i++){
-        for (j=3; j<6; j++){
-            if (boardLayout[j][i] == "player1" && boardLayout[j-1][i-1] == "player1" && boardLayout[j-2][i-2] == "player1" && boardLayout[j-3][i-3] == "player1") {
-                gameOver=true
+    for (i = 3; i < 7; i++) {
+        for (j = 3; j < 6; j++) {
+            if (boardLayout[j][i] == "player1" && boardLayout[j - 1][i - 1] == "player1" && boardLayout[j - 2][i - 2] == "player1" && boardLayout[j - 3][i - 3] == "player1") {
+                gameOver = true
                 return "player1";
-            } else if (boardLayout[j][i] == "player2" && boardLayout[j-1][i-1] == "player2" && boardLayout[j-2][i-2] == "player2" && boardLayout[j-3][i-3] == "player2") {
-                gameOver=true
+            } else if (boardLayout[j][i] == "player2" && boardLayout[j - 1][i - 1] == "player2" && boardLayout[j - 2][i - 2] == "player2" && boardLayout[j - 3][i - 3] == "player2") {
+                gameOver = true
                 return "player2";
             }
         }
@@ -216,22 +215,22 @@ function checkFullBoard() {
     mergedBoard.forEach(element => {
         if (element != null) {
             boardSpace += 1
-        } 
+        }
         if (boardSpace == 42)
             gameOver = true
-            return true
+        return true
     });
 }
 
 
 function allAreEqual(array, startNum) {
     const result = array.every(element => {
-      if (element === null) {
+        if (element === null) {
             return false
-      } else if (element === array[startNum]) {
+        } else if (element === array[startNum]) {
             return true
-      }
+        }
     });
-    console.log(`This is the result for ${array} with ${startNum}: ` + result )
+    console.log(`This is the result for ${array} with ${startNum}: ` + result)
     return result;
 }
