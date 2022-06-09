@@ -14,7 +14,6 @@ function getBoard() {
     console.log("getBoard was called")
     return boardLayout
 }
-// hi
 
 function getNewBoard() {
         return [[null, null, null, null, null, null, null], 
@@ -140,7 +139,7 @@ function checkWinner(row, column) {
         if ((checkHorizontal() || checkVertical() || checkDiagonal()) == "player1") {
             console.log("player1 wins")
             return "player1"
-        } else if ((checkHorizontal() || checkVertical() || checkDiagonalV2()) == "player2") {
+        } else if ((checkHorizontal() || checkVertical() || checkDiagonal()) == "player2") {
             console.log("player2 wins")
             return "player2"
         } else if (checkFullBoard) {
@@ -174,11 +173,11 @@ function checkVertical() {
     console.log("checkVertical was called")
     for (column = 0; column<3 ; column++ ){
         for (row = 0; row<6; row++){
-            if (boardLayout[column][row] == "player1" && boardLayout[column+1][row] == "player1" && boardLayout[column+2][row] == "player1" && boardLayout[column+3][row] == "player1"){
+            if (boardLayout[column][row] === "player1" && boardLayout[column+1][row] === "player1" && boardLayout[column+2][row] === "player1" && boardLayout[column+3][row] === "player1"){
                 console.log("Player1 wins")
                 gameOver = true
                 return "player1";
-            } else if (boardLayout[column][row] == "player2" && boardLayout[column+1][row] == "player2" && boardLayout[column+2][row] == "player2" && boardLayout[column+3][row] == "player2") {
+            } else if (boardLayout[column][row] === "player2" && boardLayout[column+1][row] === "player2" && boardLayout[column+2][row] === "player2" && boardLayout[column+3][row] === "player2") {
                     gameOver = true
                     return "player2";
             }         
@@ -190,21 +189,21 @@ function checkDiagonal() {
     console.log("checkDiagonal was called")
     for (columnAsc=3; columnAsc<7; columnAsc++){
         for (rowAsc=0; rowAsc<6; rowAsc++){
-            if (this.board[columnAsc][rowAsc] == "player1" && this.board[columnAsc-1][rowAsc+1] == "player1" && this.board[columnAsc-2][rowAsc+2] == "player1" && this.board[columnAsc-3][rowAsc+3] == "player1") {
-                gameOver=true
+            if (boardLayout[rowAsc][columnAsc] === "player1" && boardLayout[rowAsc-1][columnAsc+1] === "player1" && boardLayout[rowAsc-2][columnAsc+2] === "player1" && boardLayout[rowAsc-3][columnAsc+3] === "player1") {
+                gameOver = true
                 return "player1";
-            } else if (this.board[columnAsc][rowAsc] == "player2" && this.board[columnAsc-1][rowAsc+1] == "player2" && this.board[columnAsc-2][rowAsc+2] == "player2" && this.board[columnAsc-3][rowAsc+3] == "player2") {
-                gameOver=true
+            } else if (boardLayout[rowAsc][columnAsc] === "player2" && boardLayout[rowAsc-1][columnAsc+1] === "player2" && boardLayout[rowAsc-2][columnAsc+2] === "player2" && boardLayout[rowAsc-3][columnAsc+3] === "player2") {
+                gameOver = true
                 return "player2";
             }
         }
     }
     for (i=3; i<7; i++){
         for (j=3; j<6; j++){
-            if (this.board[i][j] == "player1" && this.board[i-1][j-1] == "player1" && this.board[i-2][j-2] == "player1" && this.board[i-3][j-3] == "player1") {
+            if (boardLayout[j][i] == "player1" && boardLayout[j-1][i-1] == "player1" && boardLayout[j-2][i-2] == "player1" && boardLayout[j-3][i-3] == "player1") {
                 gameOver=true
                 return "player1";
-            } else if (this.board[i][j] == "player2" && this.board[i-1][j-1] == "player2" && this.board[i-2][j-2] == "player2" && this.board[i-3][j-3] == "player2") {
+            } else if (boardLayout[j][i] == "player2" && boardLayout[j-1][i-1] == "player2" && boardLayout[j-2][i-2] == "player2" && boardLayout[j-3][i-3] == "player2") {
                 gameOver=true
                 return "player2";
             }
@@ -218,7 +217,7 @@ function checkFullBoard() {
         if (element != null) {
             boardSpace += 1
         } 
-        if (boardSpace == 9)
+        if (boardSpace == 42)
             gameOver = true
             return true
     });
