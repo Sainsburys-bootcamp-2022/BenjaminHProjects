@@ -187,7 +187,7 @@ function checkVertical() {
 function checkDiagonal() {
     console.log("checkDiagonal was called")
     for (columnAsc = 3; columnAsc < 7; columnAsc++) {
-        for (rowAsc = 0; rowAsc < 6; rowAsc++) {
+        for (rowAsc = 0; rowAsc < 3; rowAsc++) {
             if (boardLayout[rowAsc][columnAsc] === "player1" && boardLayout[rowAsc - 1][columnAsc + 1] === "player1" && boardLayout[rowAsc - 2][columnAsc + 2] === "player1" && boardLayout[rowAsc - 3][columnAsc + 3] === "player1") {
                 gameOver = true
                 return "player1";
@@ -197,12 +197,13 @@ function checkDiagonal() {
             }
         }
     }
-    for (i = 3; i < 7; i++) {
-        for (j = 3; j < 6; j++) {
-            if (boardLayout[j][i] == "player1" && boardLayout[j - 1][i - 1] == "player1" && boardLayout[j - 2][i - 2] == "player1" && boardLayout[j - 3][i - 3] == "player1") {
+
+    for (columnDesc = 3; columnDesc > 0; columnDesc--) {
+        for (rowDesc = 0; rowDesc < 6; rowDesc++) {
+            if (boardLayout[rowDesc][columnDesc] === "player1" && boardLayout[rowDesc + 1][columnDesc - 1] === "player1" && boardLayout[rowDesc - 2][columnDesc - 2] === "player1" && boardLayout[rowDesc + 3][columnDesc - 3] === "player1") {
                 gameOver = true
                 return "player1";
-            } else if (boardLayout[j][i] == "player2" && boardLayout[j - 1][i - 1] == "player2" && boardLayout[j - 2][i - 2] == "player2" && boardLayout[j - 3][i - 3] == "player2") {
+            } else if (boardLayout[rowDesc][columnDesc] === "player2" && boardLayout[rowDesc - 1][columnDesc - 1] === "player2" && boardLayout[rowDesc - 2][columnDesc - 2] === "player2" && boardLayout[rowDesc - 3][columnDesc - 3] === "player2") {
                 gameOver = true
                 return "player2";
             }
