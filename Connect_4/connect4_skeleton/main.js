@@ -199,12 +199,12 @@ function checkDiagonal() {
         }
     }
     // top left to bottom right
-    for (columnDesc = 3; columnDesc > 0; columnDesc--) {
-        for (rowDesc = 0; rowDesc < 6; rowDesc++) {
-            if (boardLayout[rowDesc][columnDesc] === "player1" && boardLayout[rowDesc + 1][columnDesc - 1] === "player1" && boardLayout[rowDesc - 2][columnDesc - 2] === "player1" && boardLayout[rowDesc + 3][columnDesc - 3] === "player1") {
+    for (columnDesc = 0; columnDesc < 4; columnDesc++) {
+        for (rowDesc = 2; rowDesc > 0; rowDesc--) {
+            if (boardLayout[rowDesc][columnDesc] === "player1" && boardLayout[rowDesc + 1][columnDesc + 1] === "player1" && boardLayout[rowDesc + 2][columnDesc + 2] === "player1" && boardLayout[rowDesc + 3][columnDesc + 3] === "player1") {
                 gameOver = true
                 return "player1";
-            } else if (boardLayout[rowDesc][columnDesc] === "player2" && boardLayout[rowDesc - 1][columnDesc - 1] === "player2" && boardLayout[rowDesc - 2][columnDesc - 2] === "player2" && boardLayout[rowDesc - 3][columnDesc - 3] === "player2") {
+            } else if (boardLayout[rowDesc][columnDesc] === "player2" && boardLayout[rowDesc + 1][columnDesc + 1] === "player2" && boardLayout[rowDesc + 2][columnDesc + 2] === "player2" && boardLayout[rowDesc + 3][columnDesc + 3] === "player2") {
                 gameOver = true
                 return "player2";
             }
