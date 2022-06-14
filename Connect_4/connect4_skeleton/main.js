@@ -149,18 +149,33 @@ function checkWinner(row, column) {
     }
 }
 
+// function checkHorizontal() {
+//     console.log("checkHorizontal was called")
+//     for (let row = 0; row < 6; row++) {
+//         for (let start = 0; start < 4; start++) {
+//             let end = start + 4
+//             let testArray = boardLayout[row].slice(start, end)
+//             // console.log(testArray)
+//             let connect4 = allAreEqual(testArray, start)
+//             if (connect4 === true && testArray[0] === "player1") {
+//                 gameOver = true
+//                 return "player1"
+//             } else if (connect4 === true && testArray[0] === "player2") {
+//                 gameOver = true
+//                 return "player2"
+//             }
+//         }
+//     }
+// }
+
 function checkHorizontal() {
     console.log("checkHorizontal was called")
-    for (let row = 0; row < 6; row++) {
-        for (let start = 0; start < 4; start++) {
-            let end = start + 4
-            let testArray = boardLayout[row].slice(start, end)
-            // console.log(testArray)
-            let connect4 = allAreEqual(testArray, start)
-            if (connect4 === true && testArray[0] === "player1") {
+    for(row = 0; row < 6; row++) {
+        for(column = 0; column < 4; column++) {
+            if (boardLayout[row][column] === "player1" && boardLayout[row][column + 1] === "player1" && boardLayout[row][column + 2] === "player1" && boardLayout[row][column + 3] === "player1") {
                 gameOver = true
                 return "player1"
-            } else if (connect4 === true && testArray[0] === "player2") {
+            } else if (boardLayout[row][column] === "player2" && boardLayout[row][column + 1] === "player2" && boardLayout[row][column + 2] === "player2" && boardLayout[row][column + 3] === "player2") {
                 gameOver = true
                 return "player2"
             }
@@ -170,13 +185,13 @@ function checkHorizontal() {
 
 function checkVertical() {
     console.log("checkVertical was called")
-    for (column = 0; column < 3; column++) {
-        for (row = 0; row < 6; row++) {
-            if (boardLayout[column][row] === "player1" && boardLayout[column + 1][row] === "player1" && boardLayout[column + 2][row] === "player1" && boardLayout[column + 3][row] === "player1") {
+    for (row = 0; row < 3; row++) {
+        for (column = 0; column < 6; column++) {
+            if (boardLayout[row][column] === "player1" && boardLayout[row + 1][column] === "player1" && boardLayout[row + 2][column] === "player1" && boardLayout[row + 3][column] === "player1") {
                 console.log("Player1 wins")
                 gameOver = true
                 return "player1";
-            } else if (boardLayout[column][row] === "player2" && boardLayout[column + 1][row] === "player2" && boardLayout[column + 2][row] === "player2" && boardLayout[column + 3][row] === "player2") {
+            } else if (boardLayout[row][column] === "player2" && boardLayout[row + 1][column] === "player2" && boardLayout[row + 2][column] === "player2" && boardLayout[row + 3][column] === "player2") {
                 gameOver = true
                 return "player2";
             }

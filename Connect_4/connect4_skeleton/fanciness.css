@@ -1,9 +1,11 @@
 
 h1 {
+    font-size: 50px;
     display: flex;
-    justify-content: center;
-    align-items:stretch;
+    align-items:flex-start;
     vertical-align: text-top;
+    width: 250px;
+    height: 750px;
 }
 
 
@@ -23,6 +25,7 @@ body {
     border: 15px solid yellow;
     padding: 50px;
     margin: 20px;
+    align-items: center;
 } 
 
 .column {
@@ -54,7 +57,6 @@ body {
     /* background-color: #000000;  */
     border: none;
     color: yellow;
-    text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 25px;
@@ -100,6 +102,7 @@ body {
     display: none;
     background-color: rgb(0, 0, 0);
     color: yellow;
+    width: 100px;
 }
 
 #reset-button{
