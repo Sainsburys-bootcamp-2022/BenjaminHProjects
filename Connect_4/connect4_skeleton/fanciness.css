@@ -1,8 +1,9 @@
 
 h1 {
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items:stretch;
+    vertical-align: text-top;
 }
 
 
@@ -56,14 +57,23 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-
+    font-size: 25px;
+    font-family: "Monospace";
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    border-radius: 50%;
+}
 
+.player1 {
+    color: yellow;
+}
+
+.player2 {
+    color: red;
 }
 
 .player1-counter {

@@ -155,7 +155,7 @@ function checkHorizontal() {
         for (let start = 0; start < 4; start++) {
             let end = start + 4
             let testArray = boardLayout[row].slice(start, end)
-            console.log(testArray)
+            // console.log(testArray)
             let connect4 = allAreEqual(testArray, start)
             if (connect4 === true && testArray[0] === "player1") {
                 gameOver = true
@@ -189,27 +189,27 @@ function checkDiagonal() {
     // bottom left to top right
     for (columnAsc = 3; columnAsc < 7; columnAsc++) {
         for (rowAsc = 0; rowAsc < 3; rowAsc++) {
-            if (boardLayout[rowAsc][columnAsc] === "player1" && boardLayout[rowAsc - 1][columnAsc + 1] === "player1" && boardLayout[rowAsc - 2][columnAsc + 2] === "player1" && boardLayout[rowAsc - 3][columnAsc + 3] === "player1") {
+            if (boardLayout[rowAsc][columnAsc] === "player1" && boardLayout[rowAsc + 1][columnAsc - 1] === "player1" && boardLayout[rowAsc + 2][columnAsc - 2] === "player1" && boardLayout[rowAsc + 3][columnAsc - 3] === "player1") {
                 gameOver = true
                 return "player1";
-            } else if (boardLayout[rowAsc][columnAsc] === "player2" && boardLayout[rowAsc - 1][columnAsc + 1] === "player2" && boardLayout[rowAsc - 2][columnAsc + 2] === "player2" && boardLayout[rowAsc - 3][columnAsc + 3] === "player2") {
+            } else if (boardLayout[rowAsc][columnAsc] === "player2" && boardLayout[rowAsc + 1][columnAsc - 1] === "player2" && boardLayout[rowAsc + 2][columnAsc - 2] === "player2" && boardLayout[rowAsc + 3][columnAsc - 3] === "player2") {
                 gameOver = true
                 return "player2";
             }
         }
     }
-    // // top left to bottom right
-    // for (columnDesc = 3; columnDesc > 0; columnDesc--) {
-    //     for (rowDesc = 0; rowDesc < 6; rowDesc++) {
-    //         if (boardLayout[rowDesc][columnDesc] === "player1" && boardLayout[rowDesc + 1][columnDesc - 1] === "player1" && boardLayout[rowDesc - 2][columnDesc - 2] === "player1" && boardLayout[rowDesc + 3][columnDesc - 3] === "player1") {
-    //             gameOver = true
-    //             return "player1";
-    //         } else if (boardLayout[rowDesc][columnDesc] === "player2" && boardLayout[rowDesc - 1][columnDesc - 1] === "player2" && boardLayout[rowDesc - 2][columnDesc - 2] === "player2" && boardLayout[rowDesc - 3][columnDesc - 3] === "player2") {
-    //             gameOver = true
-    //             return "player2";
-    //         }
-    //     }
-    // }
+    // top left to bottom right
+    for (columnDesc = 3; columnDesc > 0; columnDesc--) {
+        for (rowDesc = 0; rowDesc < 6; rowDesc++) {
+            if (boardLayout[rowDesc][columnDesc] === "player1" && boardLayout[rowDesc + 1][columnDesc - 1] === "player1" && boardLayout[rowDesc - 2][columnDesc - 2] === "player1" && boardLayout[rowDesc + 3][columnDesc - 3] === "player1") {
+                gameOver = true
+                return "player1";
+            } else if (boardLayout[rowDesc][columnDesc] === "player2" && boardLayout[rowDesc - 1][columnDesc - 1] === "player2" && boardLayout[rowDesc - 2][columnDesc - 2] === "player2" && boardLayout[rowDesc - 3][columnDesc - 3] === "player2") {
+                gameOver = true
+                return "player2";
+            }
+        }
+    }
 }
 function checkFullBoard() {
     let mergedBoard = [].concat.apply([], boardLayout)
@@ -233,6 +233,6 @@ function allAreEqual(array, startNum) {
             return true
         }
     });
-    console.log(`This is the result for ${array} with ${startNum}: ` + result)
+    // console.log(`This is the result for ${array} with ${startNum}: ` + result)
     return result;
 }
