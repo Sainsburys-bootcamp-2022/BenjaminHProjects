@@ -6,23 +6,23 @@
         rel="stylesheet">
 
      <script>
-          function allowDrop(ev) {
-               ev.preventDefault()
+          function allowDrop(event) {
+               event.preventDefault()
           }
           
 
-          function drag(ev) {
-               console.log(ev.target.id)
-               console.log(ev)
-               ev.dataTransfer.setData("text", ev.target.id)
+          function drag(event) {
+               console.log(event.target.id)
+               console.log(event)
+               event.dataTransfer.setData("text", event.target.id)
           }
 
-          function drop(ev) {
+          function drop(event) {
                const squares = document.getElementsByClassName("column")
                console.log("Squares: " + squares[0])
-               ev.preventDefault()
-               let data = ev.dataTransfer.getData("text")
-               console.log(ev)
+               event.preventDefault()
+               let data = event.dataTransfer.getData("text")
+               console.log(event)
                const counter = document.getElementById(data)
                const counterCopy = counter.cloneNode()
                counterCopy.setAttribute("draggable", false)
