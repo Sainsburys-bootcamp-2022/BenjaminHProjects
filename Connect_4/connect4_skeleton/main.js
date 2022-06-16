@@ -79,7 +79,7 @@ function takeTurn(row, column) {
 function positionDrop(rowIndex, columnIndex, event) {
     takeTurn(rowIndex, columnIndex);
     const board = getBoard();
-    drawBoard(board);
+    drawBoard(board, rowIndex, columnIndex);
     const winner = checkWinner(rowIndex, columnIndex);
     if (winner) {
         player2.setAttribute("draggable", false)
@@ -99,7 +99,7 @@ for (let rowIndex = 0; rowIndex < 6; rowIndex++) {
     }
 }
 
-function drawBoard(board) {
+function drawBoard(board, row, column) {
     console.log("drawBoard was called")
     clearBoard();
     for (let rowIndex = 0; rowIndex < 6; rowIndex++) {
@@ -107,10 +107,29 @@ function drawBoard(board) {
             if (!board[rowIndex][columnIndex]) {
                 continue;
             }
-            const cellText = board[rowIndex][columnIndex] === "player1" ? "🟡" : "🔴";
-            document.getElementById(`row-${rowIndex}-column-${columnIndex}`).innerText = cellText;
+            if (player1Turn) {
+                addPlayerDiv(player1, row, column)
+            } else {
+                addPlayerDiv(player2)
+            }
+
+            // const cellText = board[rowIndex][columnIndex] === "player1" ? "🟡" : "🔴";
+            // document.getElementById(`row-${rowIndex}-column-${columnIndex}`).innerText = cellText;
         }
     }
+}
+
+function addPlayerDiv(player, rowIndex, columnIndex) {
+    console.log("addPlayerDiv was called")
+    const newDiv = document.createElement("div")
+    let counter = document.getElementById("player1-counter")
+        counter = document.getElementById("player2-counter")
+    
+    const newContent = counter.cloneNode()
+    newDiv.appendChild(newContent)
+
+    const currentDiv = document.getElementById(`row-${rowIndex}-column-${columnIndex}`)
+    document.body.insertBefore(newDiv, currentDiv)
 }
 
 
@@ -170,8 +189,8 @@ function checkWinner(row, column) {
 
 function checkHorizontal() {
     console.log("checkHorizontal was called")
-    for(row = 0; row < 6; row++) {
-        for(column = 0; column < 4; column++) {
+    for (row = 0; row < 6; row++) {
+        for (column = 0; column < 4; column++) {
             if (boardLayout[row][column] === "player1" && boardLayout[row][column + 1] === "player1" && boardLayout[row][column + 2] === "player1" && boardLayout[row][column + 3] === "player1") {
                 gameOver = true
                 return "player1"
