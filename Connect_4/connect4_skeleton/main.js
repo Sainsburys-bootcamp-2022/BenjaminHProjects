@@ -42,9 +42,9 @@ function resetGame() {
 }
 
 
-function fallCheck(counter, row, column) {
-    console.log("fallCheck was called")
-    for (let index = 5; index < 6; index--) {
+function backEndFallCheck(counter, row, column) {
+    console.log("backEndFallCheck was called")
+    for (let index = 5; index > 0; index--) {
         if (boardLayout[index][column] === null) {
             return boardLayout[index][column] = counter
         }
@@ -59,13 +59,13 @@ function takeTurn(row, column) {
     let currentSquare = boardLayout[row][column]
     if (player1Turn && currentSquare === null) {
         const yellowCounter = "player1"
-        fallCheck(yellowCounter, row, column)
+        backEndFallCheck(yellowCounter, row, column)
         player2.setAttribute("draggable", true)
         player1.setAttribute("draggable", false)
         player1Turn = false
     } else if (currentSquare === null) {
         const redCounter = "player2"
-        fallCheck(redCounter, row, column)
+        backEndFallCheck(redCounter, row, column)
         player2.setAttribute("draggable", false)
         player1.setAttribute("draggable", true)
         player1Turn = true
@@ -99,38 +99,35 @@ for (let rowIndex = 0; rowIndex < 6; rowIndex++) {
     }
 }
 
+function frontEndFallCheck(row, column) {
+    console.log("frontEndFallCheck was called")
+    for (let index = 5; index > -1; index--) {
+        if (boardLayout[index][column] === null) {
+            //Need to sort out how it determines red or yellow
+            if (!player1Turn) {
+                return document.getElementById(`row-${index}-column-${column}`).style.backgroundColor = "yellow"
+            } else if (player1Turn) {
+                return document.getElementById(`row-${index}-column-${column}`).style.backgroundColor = "red"
+            }
+            
+        }
+    }
+}
+
 function drawBoard(board, row, column) {
     console.log("drawBoard was called")
     clearBoard();
+    //need to find an alternative way to draw baord and colourise it
     for (let rowIndex = 0; rowIndex < 6; rowIndex++) {
         for (let columnIndex = 0; columnIndex < 7; columnIndex++) {
             if (!board[rowIndex][columnIndex]) {
                 continue;
             }
-            if (player1Turn) {
-                addPlayerDiv(player1, row, column)
-            } else {
-                addPlayerDiv(player2)
-            }
-
-            // const cellText = board[rowIndex][columnIndex] === "player1" ? "🟡" : "🔴";
-            // document.getElementById(`row-${rowIndex}-column-${columnIndex}`).innerText = cellText;
+            frontEndFallCheck(rowIndex, columnIndex)
         }
     }
 }
 
-function addPlayerDiv(player, rowIndex, columnIndex) {
-    console.log("addPlayerDiv was called")
-    const newDiv = document.createElement("div")
-    let counter = document.getElementById("player1-counter")
-        counter = document.getElementById("player2-counter")
-    
-    const newContent = counter.cloneNode()
-    newDiv.appendChild(newContent)
-
-    const currentDiv = document.getElementById(`row-${rowIndex}-column-${columnIndex}`)
-    document.body.insertBefore(newDiv, currentDiv)
-}
 
 
 function clearBoard() {
@@ -167,25 +164,6 @@ function checkWinner(row, column) {
         return null
     }
 }
-
-// function checkHorizontal() {
-//     console.log("checkHorizontal was called")
-//     for (let row = 0; row < 6; row++) {
-//         for (let start = 0; start < 4; start++) {
-//             let end = start + 4
-//             let testArray = boardLayout[row].slice(start, end)
-//             // console.log(testArray)
-//             let connect4 = allAreEqual(testArray, start)
-//             if (connect4 === true && testArray[0] === "player1") {
-//                 gameOver = true
-//                 return "player1"
-//             } else if (connect4 === true && testArray[0] === "player2") {
-//                 gameOver = true
-//                 return "player2"
-//             }
-//         }
-//     }
-// }
 
 function checkHorizontal() {
     console.log("checkHorizontal was called")

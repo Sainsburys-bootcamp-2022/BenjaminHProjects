@@ -72,6 +72,7 @@ body {
 
 .player1 {
     color: yellow;
+    border-radius: 100px;
 }
 
 .player2 {
@@ -80,22 +81,16 @@ body {
 
 .player1-counter {
     background-color: yellow;
-    height: 70px;
-    width: 70px;
+    height: 85px;
+    width: 85px;
     border-radius: 50%;
-    box-shadow: inset 0 0 10px #000000;
-    border-style: dotted;
-    border-color: #000000;
 }
 
 .player2-counter {
     background-color: red;
-    height: 70px;
-    width: 70px;
+    height: 85px;
+    width: 85px;
     border-radius: 50%;
-    box-shadow: inset 0 0 10px #000000;
-    border-style: dotted;
-    border-color: #000000;
 }
 
 #winner-display {
