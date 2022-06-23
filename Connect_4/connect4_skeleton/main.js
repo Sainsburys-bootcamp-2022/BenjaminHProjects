@@ -42,9 +42,9 @@ function resetGame() {
 }
 
 
-function backEndFallCheck(counter, row, column) {
-    console.log("backEndFallCheck was called")
-    for (let index = 5; index > 0; index--) {
+function fallCheck(counter, row, column) {
+    console.log("fallCheck was called")
+    for (let index = 5; index > -1; index--) {
         if (boardLayout[index][column] === null) {
             return boardLayout[index][column] = counter
         }
@@ -59,13 +59,13 @@ function takeTurn(row, column) {
     let currentSquare = boardLayout[row][column]
     if (player1Turn && currentSquare === null) {
         const yellowCounter = "player1"
-        backEndFallCheck(yellowCounter, row, column)
+        fallCheck(yellowCounter, row, column)
         player2.setAttribute("draggable", true)
         player1.setAttribute("draggable", false)
         player1Turn = false
     } else if (currentSquare === null) {
         const redCounter = "player2"
-        backEndFallCheck(redCounter, row, column)
+        fallCheck(redCounter, row, column)
         player2.setAttribute("draggable", false)
         player1.setAttribute("draggable", true)
         player1Turn = true
@@ -99,21 +99,6 @@ for (let rowIndex = 0; rowIndex < 6; rowIndex++) {
     }
 }
 
-function frontEndFallCheck(row, column) {
-    console.log("frontEndFallCheck was called")
-    for (let index = 5; index > -1; index--) {
-        if (boardLayout[index][column] === null) {
-            //Need to sort out how it determines red or yellow
-            if (!player1Turn) {
-                return document.getElementById(`row-${index}-column-${column}`).style.backgroundColor = "yellow"
-            } else if (player1Turn) {
-                return document.getElementById(`row-${index}-column-${column}`).style.backgroundColor = "red"
-            }
-            
-        }
-    }
-}
-
 function drawBoard(board, row, column) {
     console.log("drawBoard was called")
     clearBoard();
@@ -123,7 +108,11 @@ function drawBoard(board, row, column) {
             if (!board[rowIndex][columnIndex]) {
                 continue;
             }
-            frontEndFallCheck(rowIndex, columnIndex)
+            if (board[rowIndex][columnIndex] === "player1") {
+                document.getElementById(`row-${rowIndex}-column-${columnIndex}`).style.backgroundColor = "yellow"
+            } else if (board[rowIndex][columnIndex] === "player2") {
+                document.getElementById(`row-${rowIndex}-column-${columnIndex}`).style.backgroundColor = "red"
+            }
         }
     }
 }
