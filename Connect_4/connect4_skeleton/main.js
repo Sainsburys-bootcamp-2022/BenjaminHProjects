@@ -15,22 +15,6 @@ function getBoard() {
     return boardLayout
 }
 
-function getNewBoard() {
-    return [[null, null, null, null, null, null, null],
-    [null, null, null, null, null, null, null],
-    [null, null, null, null, null, null, null],
-    [null, null, null, null, null, null, null],
-    [null, null, null, null, null, null, null],
-    [null, null, null, null, null, null, null]]
-}
-
-
-function getBoard() {
-    console.log("getBoard was called");
-    return boardLayout;
-}
-
-
 document.getElementById("reset-button").addEventListener("click", resetGame)
 function resetGame() {
     console.log("resetGame was called");
@@ -134,7 +118,7 @@ function checkWinner(row, column) {
     checkHorizontal()
     checkVertical()
     checkDiagonal()
-    checkFullBoard()
+    checkFullBoard(boardLayout)
     console.log("this is the horizontal function: ", checkHorizontal())
     console.log("this is the vertical function: ", checkVertical())
     console.log("this is the diagonal function: ", checkDiagonal())
@@ -212,8 +196,8 @@ function checkDiagonal() {
         }
     }
 }
-function checkFullBoard() {
-    let mergedBoard = [].concat.apply([], boardLayout)
+function checkFullBoard(board) {
+    let mergedBoard = [].concat.apply([], board)
     let boardSpace = 0
     mergedBoard.forEach(element => {
         if (element != null) {
@@ -237,3 +221,5 @@ function allAreEqual(array, startNum) {
     // console.log(`This is the result for ${array} with ${startNum}: ` + result)
     return result;
 }
+
+
